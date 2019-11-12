@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1573598315419.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "33028F8A",
+    "lastKnownWriteTime" : 1573596388,
+    "last_content_update" : 1573596388,
+    "path" : "~/Documents/School Stuff/Fall 2019/AN597/GitHub Repositories/AssignPopModule/morphData.csv",
+    "project_path" : "morphData.csv",
+    "properties" : {
+        "cursorPosition" : "1,2",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}

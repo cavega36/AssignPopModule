@@ -1,0 +1,18 @@
+ Analysis Description ( R - assignPOP ver. 1.1.7 )
+ Perform assign.kfold() @ 2019-11-12 17:27:06 
+
+ k.fold = 3 4 5 
+ Total assignment tests = 12 
+ Data scaled and centerd: FALSE 
+ PCA for dimensionality reduction: TRUE 
+ PC retaining criteria: kaiser-guttman 
+ Machine learning model: lda 
+
+ Input Data (Non-genetics)
+ Number of individuals: 90 
+ Number of non-genetic variables: 4 
+ Number of categorical variables: 0 
+ Number of numeric variable: 4 
+ Number of populations: 3 
+ pop_A pop_B pop_C 
+ 30 30 30 
