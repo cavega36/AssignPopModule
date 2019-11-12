@@ -83,7 +83,17 @@ Let's start some analysis.
 
 #Examples without the package
 
+##MonteCarlo cross validation
+
+The Monte Carlo cross validation can be used to estimate mean and variance off assigment accuracy, throuh resampling.
+
+##K-fold cross validation
+
+The K-fold corss validation determines membership probability across individuals through using one group as a baseline and the remaining K-1 groups as testing individuals. 
+
 #Examples with the package 
+
+
 
 #References 
 
