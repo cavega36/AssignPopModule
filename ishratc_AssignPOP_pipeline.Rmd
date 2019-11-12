@@ -1,0 +1,40 @@
+---
+title: "ishratc_AssignPOP"
+author: "Ishrat Chowdhury"
+date: "November 11, 2019"
+output: html_document
+---
+
+#Introduction to module
+
+Welcome to the AssignPOP module! By the end of this module you will be able to assign populations to your genetic, non-genetic, or integrated data. 
+
+First we will introduce the package AssignPOP to you. Then we will walk you through some manual examples of population assignment using resampling and cross validation methods Monte Carlo and K-fold cross validations. We will go over how to check the accuracy of the population asisgnments.
+
+Then we will show you have to do all that and much more in with AssignPOP.
+
+#Intro to package
+
+AssignPOP is an
+
+
+#General pipeline
+
+First lets load the package 
+```{r}
+library(assignPOP)
+```
+
+
+
+
+#Examples without the package
+
+#Examples with the package 
+
+#References 
+
+
+
+
+
