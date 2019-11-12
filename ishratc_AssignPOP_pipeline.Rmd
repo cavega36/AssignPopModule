@@ -20,13 +20,66 @@ AssignPOP is an
 
 #General pipeline
 
-First lets load the package 
+First lets load the packages.
 ```{r}
 library(assignPOP)
+library(curl)
 ```
 
+Now lets load our genomic data. This genomic data is in the GENEPOP format, but you can also import from te STRUCTURE format using the complementary function.
+```{r}
+f1 <- curl("https://github.com/cavega36/AssignPopModule/blob/master/simGenepop.txt")
+simGenepop.txt <- read.table(f1, header = TRUE, sep="\t", stringsAsFactors = FALSE)
+head(simGenepop.txt)
+```
 
+It will look really funky now. We have to use an AssignPOP function to make it usable. Note that the following code might take a few minutes to run.
 
+```{r}
+YourGenepop <- read.Genepop( "simGenepop.txt", pop.names=c("pop_A","pop_B","pop_C"), haploid = FALSE)
+```
+
+That looks good! We now have genetic data loaded.
+
+We can also remove low variance loci with the following code (optional).
+
+```{r}
+YourGenepopRd <- reduce.allele( YourGenepop, p = 0.95)
+```
+
+Now lets do the same for the non-genetic data
+
+```{r}
+f2 <- curl("https://github.com/cavega36/AssignPopModule/blob/master/morphData.csv")
+morphData.csv <- read.csv(f2, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+#Import morphometric data containing sample IDs and features
+morphdf <- read.csv( "morphData.csv", header=TRUE )
+#Create a string vector for population label (repeat each name for 30 individuals)
+pop_label <- c( rep("pop_A", 30), rep("pop_B", 30), rep("pop_C", 30) ) 
+#Add the pop_label to the last column; 'morphdf_pop' is a data frame with population label in the last column
+morphdf_pop <- cbind(morphdf, pop_label)
+
+#Handling numeric population name
+#A set of population names: 1, 2, and 3
+pop_label <- c( rep(1, 30), rep(2, 30), rep(3, 30))
+#Add the pop_label
+morphdf_pop <- cbind(morphdf, pop_label)
+#Convert population name to factor data type 
+morphdf_pop$pop_label <- as.factor(morphdf_pop$pop_label)
+head(morphdf_pop)
+```
+
+Now our non-genetic data is loaded!
+
+The neat thing about AssignPOP is that you can even combine genetic and non-genetic data. The non-geentic data just needs to be in a .csv format with the first column correspodning to the ID's of the genetic data. This may take soem time to run!
+
+```{r}
+YourIntegrateData <- compile.data( YourGenepopRd, "morphData.csv")
+```
+
+Now we have integrated data!
+
+Let's start some analysis.
 
 #Examples without the package
 
