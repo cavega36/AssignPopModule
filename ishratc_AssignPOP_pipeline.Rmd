@@ -83,13 +83,48 @@ Let's start some analysis.
 
 #Examples without the package
 
+Here is a simple pipeline of a Monte Carlo Simulation 
+
 ##MonteCarlo cross validation
 
-The Monte Carlo cross validation can be used to estimate mean and variance off assigment accuracy, throuh resampling.
+The Monte Carlo cross validation can be used to estimate mean and variance off assigment accuracy, throuh resampling. It uses a set of proportions of individuals from each source population to be used a s a training dataset. The remianing individuals then get allocated to the test set. 
+
+```{r}
+set.seed(1729)
+
+# Generate 100 values
+returns = rnorm(1:100, mean = 9, sd = 12)
+
+ # plot a histogram
+hist(returns)
+```
+
+```{r}
+sample(returns,size = 4)
+```
+
+```{r}
+X = matrix(ncol = 4,nrow = 10000)
+for(year in 1:4) {
+# for each year sample the return 10000 times
+ for(i in 1:10000){
+  X[i,year] = sample(returns,1)
+ }
+}
+
+# show first 6 rows
+head(X)
+```
+
+```{r}
+# Mean expected rate of return
+apply(X,2,mean)
+```
+
 
 ##K-fold cross validation
 
-The K-fold corss validation determines membership probability across individuals through using one group as a baseline and the remaining K-1 groups as testing individuals. 
+Since the Monte-Carlo method tests random individuals, it is not gauranteed that each eahc individual gets tested. The K-fold corss validation determines membership probability across individuals through using one group as a baseline and the remaining K-1 groups as testing individuals. 
 
 #Examples with the package 
 
