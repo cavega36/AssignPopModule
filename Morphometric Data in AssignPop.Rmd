@@ -1,0 +1,41 @@
+---
+title: "Morphometric Data in AssignPop"
+author: "C. Vega"
+date: "11/23/2019"
+output: html_document
+---
+# In order to use an integrated approach in AssignPop, you will need to have both genetic and morphometric datasets. 
+ Here we give the code for how to transfrom a morphometric dataset into a dataset to match your genetic data as practice.
+ 
+ ## Loading in Morphometric and Gene Data
+```{r}
+library(assignPOP)
+library(klaR)
+
+morphdata <- read.csv( "MorphTransform.csv", header=TRUE )
+pop_label <- c( rep("BM", 30), rep("ITCS", 30), rep("SICO", 30) ) 
+
+morphdata_pop <- cbind(morphdata, pop_label)
+
+morphdata_pop$pop_label <- as.factor(morphdata_pop$pop_label)
+
+head(morphdata_pop)
+
+# Loading the Morph Turtle Gene Data 
+TurtleGene <- read.Genepop("Morph_turtle_data.txt", pop.names = c("BM", "ITCS", "SICO"),haploid = FALSE)
+TurtleGene
+
+
+# Now Using Both Morphometric and Genetic data- not sure how to make sure the pop labels stay on the MorphTransform data
+MorphGene <- compile.data(TurtleGene, "MorphTransform.csv")
+
+# Attempting the Monte Carlo Cross Validation with both datasets to see if it works before log transforminh
+assign.MC(MorphGene, train.inds=c(0.5, 0.7, 0.9), train.loci=c(0.1, 0.25, 0.5, 1),
+           loci.sample="fst", iterations=30, model="svm", dir="Result-folder/")
+
+
+
+```
+ 
+ ## Multiply by two then log transform all data points 
+ 
